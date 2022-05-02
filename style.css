@@ -28,7 +28,7 @@ footer {
 #calculator {
     padding: 8px;
     height: 390px;
-    width: 250px;
+    width: 320px;
     border:  0.5px solid green;
     display: flex;
     flex-direction: column;
@@ -39,7 +39,7 @@ footer {
     border: 0.5px solid black;
     text-align: end;
     justify-content: space-around;
-    font-size: 40px;
+    font-size: 35px;
 }
 #lower {
     height: 275px;
