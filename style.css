@@ -1,56 +1,74 @@
-html {
-    position: relative;
-    min-height: 100%;
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-body ,#upper{
+body {
     display :flex;
     flex-direction: column;
     flex: 1;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    min-height: 100vh;
+}
+.head {
+    font-size: 60px;
+    background-color: bisque;
+    width: 100%;
+    padding: 24px;
+    text-align: center;
+    font-weight: bolder;
 }
 footer {
     background-color: orange;
-    position: absolute;
+    /* position: absolute; */
     left: 0;
     bottom: 0;
     height: 50px;
     width: 100%;
-    overflow: hidden;
+    text-align: center;
+    font-size: 28px;
+    /* overflow: hidden; */
 }
 #mainBody {
     display:flex;
-    flex: 1;
+    flex: auto;
     justify-content: center;
 }
 #calculator {
+    margin-top: 20px;
     padding: 8px;
-    height: 690px;
+    height: 670px;
     width: 620px;
-    border:  0.5px solid green;
+    border:  10px solid rgb(199, 67, 211);
     display: flex;
     flex-direction: column;
+    background-color: rgb(240, 199, 206);
 }
 
 #upper {
+    flex: 1;
     padding: 18px;
     height: 100px;
     border: 0.5px solid black;
     text-align: end;
     justify-content: space-around;
-    font-size: 55px;
-    display:flex;
+    font-size: 45px;
+    display: flex;
+    flex-direction: column;
 }
 .topBar {
     font-size: 30px;
+    height: 75px;
+    color: rgb(19, 19, 122);
 }
 .lowBar {
-    flex: auto;
+    height: 75px;
+    color: rgb(19, 19, 122);
+    /* flex: 1; */
 }
 #lower {
-    /* flex:1; */
+    flex:1;
     height: 520px;
     border: 0.5px solid black;
 }
@@ -63,5 +81,11 @@ footer {
 button {
     height: 100px;
     flex: 1;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 30px;
+    background-color: rgb(168, 214, 204);
 }
 
+.equal {
+    background-color: #4CAF50;
+}

@@ -54,6 +54,7 @@ btnNum.forEach((btn) => {
         loDis(inputArray);
         } else {
             notNum.style.fontSize = '20px'
+            notNum.style.textAlign = 'center'
             notNum.innerText = 'The number have reach the limit of the display';
         }
     })
