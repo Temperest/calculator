@@ -27,22 +27,31 @@ footer {
 }
 #calculator {
     padding: 8px;
-    height: 390px;
-    width: 320px;
+    height: 690px;
+    width: 620px;
     border:  0.5px solid green;
     display: flex;
     flex-direction: column;
 }
 
 #upper {
+    padding: 18px;
     height: 100px;
     border: 0.5px solid black;
     text-align: end;
     justify-content: space-around;
-    font-size: 35px;
+    font-size: 55px;
+    display:flex;
+}
+.topBar {
+    font-size: 30px;
+}
+.lowBar {
+    flex: auto;
 }
 #lower {
-    height: 275px;
+    /* flex:1; */
+    height: 520px;
     border: 0.5px solid black;
 }
 .row {
@@ -52,7 +61,7 @@ footer {
     gap: 4px;
 }
 button {
-    height: 50px;
+    height: 100px;
     flex: 1;
 }
 

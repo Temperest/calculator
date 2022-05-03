@@ -11,7 +11,7 @@ function multiply(a, b) {
 }
 function divide(a, b) {
     if (b == 0) {
-        return noDizero()
+        return lowBar.innerText = "Division by zero is undifined";
     }
     return a / b
 }
@@ -27,11 +27,11 @@ function operate(operator, a, b) {
             break;
     }
 }
-function noDizero() {
-    alert("Division by zero is undifined");
-}
-const btnNum = document.querySelectorAll('.number');
 
+function round(num) {
+    return Math.round(num*100000000)/100000000
+}
+ 
 //-------Number Button----------------------//
 let arrayValueA = [];
 let arrayValueB = [];
@@ -43,12 +43,19 @@ let inputOperator = "";
 let operator = "";
 let topBar = document.querySelector('.topBar');
 let lowBar = document.querySelector('.lowBar');
+let notNum = document.querySelector('.notnum');
 
+const btnNum = document.querySelectorAll('.number');
 btnNum.forEach((btn) => {
     btn.addEventListener('click', () => {
         // alert(btn.innerText);
+        if ( inputArray.length <= 14){
         inputArray.push(btn.innerText);
         loDis(inputArray);
+        } else {
+            notNum.style.fontSize = '20px'
+            notNum.innerText = 'The number have reach the limit of the display';
+        }
     })
 })
 
@@ -58,44 +65,64 @@ const btnOper = document.querySelectorAll('.operate');
 btnOper.forEach((btn) => {
     btn.addEventListener('click', () => {
         // alert(btn.innerText);
-        inputOperator = btn.innerText;
 
         if (arrayValueA.length == 0) {
             arrayValueA = inputArray.slice();
             inputArray.length = 0;
+            valueA = Number(arrayValueA.join(''));
         }
+        else if (inputArray.length == 0 && total > 0) {
+            inputOperator = btn.innerText;
+            upDis(valueA,inputOperator)
+            return
+        } 
         else {
             arrayValueB = inputArray.slice();
             inputArray.length = 0
-            valueA = Number(arrayValueA.join(''));
             valueB = Number(arrayValueB.join(''));
             operator = inputOperator
 
-            total = operate(operator,valueA,valueB);
+            upDis(valueA,operator)
 
-            arrayValueA = Array.from(String(total), Number);
+            total = round(operate(operator,valueA,valueB));
 
-            upDis(arrayValueA,operator)
+            valueA = total;
+            if (isNaN(total)){ return
+            }else{
             loDis(total);
-            return
+            }
         }
-        upDis(arrayValueA,inputOperator,[])
+    inputOperator = btn.innerText;
+    upDis(valueA,inputOperator)
     })
 })
 
 const btnEqu = document.querySelector('.equal');
 
 btnEqu.addEventListener('click', () => {
+    if (arrayValueA == 0 && arrayValueB == 0){
+        return
+    }
+    else if (inputArray.length == 0 && total > 0) {
+        return
+    } 
+    else {
     // alert(btnEqu.innerText);
     arrayValueB = inputArray.slice();
     inputArray.length = 0
-    valueA = Number(arrayValueA.join(''));
     valueB = Number(arrayValueB.join(''));
     operator = inputOperator
-    upDis(arrayValueA,operator,arrayValueB)
-    total = operate(operator,valueA,valueB)
-    arrayValueA = Array.from(String(total), Number);
+
+    upDis(valueA,operator,arrayValueB)
+
+    total = round(operate(operator,valueA,valueB));
+    valueA = total;
+
+    if (isNaN(total)){ return
+    }else{
     loDis(total);
+    }
+    }
 });
 
 const btnClear = document.querySelector('.clear');
@@ -115,20 +142,32 @@ btnClear.addEventListener('click', () => {
 });
 
 const btnUndo = document.querySelector('.undo');
-
 btnUndo.addEventListener('click', () => {
     // alert(btnUndo.innerText);
     inputArray.splice(-1);
     loDis(inputArray);
 });
 
+const btnPe = document.querySelector('.period');
+btnPe.addEventListener('click', () => {
+    if ( checkPeriod(inputArray)){
+        return
+    } else{
+    inputArray.push(btnPe.innerText)
+    loDis(inputArray);
+    }
+})
+
+function checkPeriod(array) {
+    return array.some( element => element == '.')
+}
+
 function upDis(dis1,dis2,dis3) {
     if ( Array.isArray(dis3)){
-    topBar.innerText = dis1.join("") + dis2 + dis3.join('');
+    topBar.innerText = dis1 + dis2 + dis3.join('');
     }else {
-    topBar.innerText = dis1.join("") + dis2;
+    topBar.innerText = dis1 + dis2;
     }
-
 }
 
 function loDis(disa,disb) {
@@ -139,4 +178,7 @@ function loDis(disa,disb) {
     }
 }
 
-// document.querySelector(".lowBar").innerText = "456"
+window.addEventListener('keydown', (e) => {
+    const key = document.querySelector(`button[class="${e.key}"]`)
+    console.log(e)
+})
