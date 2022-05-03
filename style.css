@@ -34,13 +34,15 @@ footer {
     display:flex;
     flex: auto;
     justify-content: center;
+    background-color: rgb(252, 158, 124);
 }
 #calculator {
     margin-top: 20px;
+    margin-bottom: 20px;
     padding: 8px;
-    height: 670px;
+    height: 680px;
     width: 620px;
-    border:  10px solid rgb(199, 67, 211);
+    border:  10px solid rgb(197, 103, 206);
     display: flex;
     flex-direction: column;
     background-color: rgb(240, 199, 206);
@@ -48,9 +50,10 @@ footer {
 
 #upper {
     flex: 1;
+    margin: 10px;
     padding: 18px;
     height: 100px;
-    border: 0.5px solid black;
+    border: 10.5px solid rgb(230, 84, 169);
     text-align: end;
     justify-content: space-around;
     font-size: 45px;
@@ -70,7 +73,7 @@ footer {
 #lower {
     flex:1;
     height: 520px;
-    border: 0.5px solid black;
+    /* border: 0.5px solid black; */
 }
 .row {
     /* border: 0.5px dotted pink; */

@@ -11,7 +11,7 @@ function multiply(a, b) {
 }
 function divide(a, b) {
     if (b == 0) {
-        return lowBar.innerText = "Division by zero is undifined";
+        return lowBar.innerText = "Can't divide zero";
     }
     return a / b
 }
@@ -32,7 +32,7 @@ function round(num) {
     return Math.round(num*100000000)/100000000
 }
  
-//-------Number Button----------------------//
+
 let arrayValueA = [];
 let arrayValueB = [];
 let valueA = 0;
@@ -48,7 +48,6 @@ let notNum = document.querySelector('.notnum');
 const btnNum = document.querySelectorAll('.number');
 btnNum.forEach((btn) => {
     btn.addEventListener('click', () => {
-        // alert(btn.innerText);
         if ( inputArray.length <= 14){
         inputArray.push(btn.innerText);
         loDis(inputArray);
@@ -60,12 +59,10 @@ btnNum.forEach((btn) => {
     })
 })
 
-//-----------Operator Button----------------//
 const btnOper = document.querySelectorAll('.operate');
 
 btnOper.forEach((btn) => {
     btn.addEventListener('click', () => {
-        // alert(btn.innerText);
 
         if (arrayValueA.length == 0) {
             arrayValueA = inputArray.slice();
@@ -78,20 +75,7 @@ btnOper.forEach((btn) => {
             return
         } 
         else {
-            arrayValueB = inputArray.slice();
-            inputArray.length = 0
-            valueB = Number(arrayValueB.join(''));
-            operator = inputOperator
-
-            upDis(valueA,operator)
-
-            total = round(operate(operator,valueA,valueB));
-
-            valueA = total;
-            if (isNaN(total)){ return
-            }else{
-            loDis(total);
-            }
+            calculator()
         }
     inputOperator = btn.innerText;
     upDis(valueA,inputOperator)
@@ -108,23 +92,28 @@ btnEqu.addEventListener('click', () => {
         return
     } 
     else {
-    // alert(btnEqu.innerText);
-    arrayValueB = inputArray.slice();
-    inputArray.length = 0
-    valueB = Number(arrayValueB.join(''));
-    operator = inputOperator
-
-    upDis(valueA,operator,arrayValueB)
-
-    total = round(operate(operator,valueA,valueB));
-    valueA = total;
-
-    if (isNaN(total)){ return
-    }else{
-    loDis(total);
-    }
+        calculator()
     }
 });
+
+function calculator() {
+    arrayValueB = inputArray.slice();
+        inputArray.length = 0
+        valueB = Number(arrayValueB.join(''));
+        operator = inputOperator
+
+        upDis(valueA,operator,arrayValueB)
+
+        total = round(operate(operator,valueA,valueB));
+        valueA = total;
+
+        if (isNaN(total)){ 
+            topBar.innerText = "ERROR!";
+            return
+        }else{
+            loDis(total);
+        }
+}
 
 const btnClear = document.querySelector('.clear');
 
@@ -178,8 +167,8 @@ function loDis(disa,disb) {
         lowBar.innerText = disa
     }
 }
-
+// work in process //
 window.addEventListener('keydown', (e) => {
     const key = document.querySelector(`button[class="${e.key}"]`)
-    console.log(e)
+    // console.log(e)
 })
