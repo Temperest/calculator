@@ -29,7 +29,7 @@ function operate(operator, a, b) {
 }
 
 function round(num) {
-    return Math.round(num*100000000)/100000000
+    return Math.round(num*1000)/1000
 }
  
 
@@ -85,7 +85,7 @@ btnOper.forEach((btn) => {
 const btnEqu = document.querySelector('.equal');
 
 btnEqu.addEventListener('click', () => {
-    if (arrayValueA == 0 && arrayValueB == 0){
+    if (arrayValueA.length == 0 && arrayValueB.length == 0){
         return
     }
     else if (inputArray.length == 0 && total > 0) {
@@ -98,27 +98,33 @@ btnEqu.addEventListener('click', () => {
 
 function calculator() {
     arrayValueB = inputArray.slice();
-        inputArray.length = 0
-        valueB = Number(arrayValueB.join(''));
-        operator = inputOperator
+    inputArray.length = 0
+    valueB = Number(arrayValueB.join(''));
+    operator = inputOperator
 
-        upDis(valueA,operator,arrayValueB)
+    upDis(valueA,operator,arrayValueB)
 
-        total = round(operate(operator,valueA,valueB));
-        valueA = total;
+    total = round(operate(operator,valueA,valueB));
+    valueA = total;
 
-        if (isNaN(total)){ 
-            topBar.innerText = "ERROR!";
-            return
-        }else{
-            loDis(total);
-        }
+    if (isNaN(total)){ 
+        topBar.innerText = "ERROR!";
+        clear();
+        return 
+    }else{
+        loDis(total);
+    }
 }
 
 const btnClear = document.querySelector('.clear');
 
 btnClear.addEventListener('click', () => {
-    // alert(btnClear.innerText);
+    clear();
+    topBar.innerText = '0';
+    lowBar.innerText = '0';
+});
+
+function clear(){
     arrayValueA = [];
     arrayValueB = [];
     valueA = 0;
@@ -127,13 +133,10 @@ btnClear.addEventListener('click', () => {
     inputArray = [];
     inputOperator = "";
     operator = "";
-    topBar.innerText = '0';
-    lowBar.innerText = '0';
-});
+}
 
 const btnUndo = document.querySelector('.undo');
 btnUndo.addEventListener('click', () => {
-    // alert(btnUndo.innerText);
     inputArray.splice(-1);
     loDis(inputArray);
 });
@@ -167,6 +170,7 @@ function loDis(disa,disb) {
         lowBar.innerText = disa
     }
 }
+
 // work in process //
 window.addEventListener('keydown', (e) => {
     const key = document.querySelector(`button[class="${e.key}"]`)

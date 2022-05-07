@@ -21,14 +21,10 @@ body {
 }
 footer {
     background-color: orange;
-    /* position: absolute; */
-    left: 0;
-    bottom: 0;
-    height: 50px;
+    height: 75px;
     width: 100%;
     text-align: center;
-    font-size: 28px;
-    /* overflow: hidden; */
+    font-size: 40px;
 }
 #mainBody {
     display:flex;
