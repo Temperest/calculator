@@ -1,49 +1,11 @@
-console.log("good")
-
-function add(a, b) {
-    return a + b
-}
-function subtract(a, b) {
-    return a - b
-}
-function multiply(a, b) {
-    return a * b
-}
-function divide(a, b) {
-    if (b == 0) {
-        return lowBar.innerText = "Can't divide zero";
-    }
-    return a / b
-}
-function operate(operator, a, b) {
-    switch (operator) {
-        case '+': return add(a, b)
-            break;
-        case '-': return subtract(a, b)
-            break;
-        case '*': return multiply(a, b)
-            break;
-        case '/': return divide(a, b)
-            break;
-    }
-}
-
-function round(num) {
-    return Math.round(num*1000)/1000
-}
- 
-
-let arrayValueA = [];
-let arrayValueB = [];
-let valueA = 0;
-let valueB = 0;
+let valueA = "";
+let valueB = "";
 let total = 0;
 let inputArray = [];
 let inputOperator = "";
 let operator = "";
 let topBar = document.querySelector('.topBar');
 let lowBar = document.querySelector('.lowBar');
-let notNum = document.querySelector('.notnum');
 
 const btnNum = document.querySelectorAll('.number');
 btnNum.forEach((btn) => {
@@ -52,9 +14,7 @@ btnNum.forEach((btn) => {
         inputArray.push(btn.innerText);
         loDis(inputArray);
         } else {
-            notNum.style.fontSize = '20px'
-            notNum.style.textAlign = 'center'
-            notNum.innerText = 'The number have reach the limit of the display';
+            alert('The number have reach the limit of the display');
         }
     })
 })
@@ -64,10 +24,9 @@ const btnOper = document.querySelectorAll('.operate');
 btnOper.forEach((btn) => {
     btn.addEventListener('click', () => {
 
-        if (arrayValueA.length == 0) {
-            arrayValueA = inputArray.slice();
+        if (valueA.length == 0) {
+            valueA = Number(inputArray.join(''));
             inputArray.length = 0;
-            valueA = Number(arrayValueA.join(''));
         }
         else if (inputArray.length == 0 && total > 0) {
             inputOperator = btn.innerText;
@@ -85,7 +44,7 @@ btnOper.forEach((btn) => {
 const btnEqu = document.querySelector('.equal');
 
 btnEqu.addEventListener('click', () => {
-    if (arrayValueA.length == 0 && arrayValueB.length == 0){
+    if (valueA.length == 0 && valueB.length == 0){
         return
     }
     else if (inputArray.length == 0 && total > 0) {
@@ -97,12 +56,11 @@ btnEqu.addEventListener('click', () => {
 });
 
 function calculator() {
-    arrayValueB = inputArray.slice();
+    valueB = Number(inputArray.join(''));
     inputArray.length = 0
-    valueB = Number(arrayValueB.join(''));
     operator = inputOperator
 
-    upDis(valueA,operator,arrayValueB)
+    upDis(valueA,operator,valueB)
 
     total = round(operate(operator,valueA,valueB));
     valueA = total;
@@ -125,10 +83,8 @@ btnClear.addEventListener('click', () => {
 });
 
 function clear(){
-    arrayValueA = [];
-    arrayValueB = [];
-    valueA = 0;
-    valueB = 0;
+    valueA = "";
+    valueB = "";
     total = 0;
     inputArray = [];
     inputOperator = "";
@@ -170,6 +126,39 @@ function loDis(disa,disb) {
         lowBar.innerText = disa
     }
 }
+
+function add(a, b) {
+    return a + b
+}
+function subtract(a, b) {
+    return a - b
+}
+function multiply(a, b) {
+    return a * b
+}
+function divide(a, b) {
+    if (b == 0) {
+        return lowBar.innerText = "Can't divide zero";
+    }
+    return a / b
+}
+function operate(operator, a, b) {
+    switch (operator) {
+        case '+': return add(a, b)
+            break;
+        case '-': return subtract(a, b)
+            break;
+        case '*': return multiply(a, b)
+            break;
+        case '/': return divide(a, b)
+            break;
+    }
+}
+
+function round(num) {
+    return Math.round(num*1000)/1000
+}
+ 
 
 // work in process //
 window.addEventListener('keydown', (e) => {

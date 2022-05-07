@@ -27,10 +27,12 @@ footer {
     font-size: 40px;
 }
 #mainBody {
+    background-color: rgb(252, 158, 124);
     display:flex;
+    flex-direction: column;
     flex: auto;
     justify-content: center;
-    background-color: rgb(252, 158, 124);
+    align-items: center;
 }
 #calculator {
     margin-top: 20px;
@@ -87,4 +89,8 @@ button {
 
 .equal {
     background-color: #4CAF50;
+}
+
+.alert {
+
 }
